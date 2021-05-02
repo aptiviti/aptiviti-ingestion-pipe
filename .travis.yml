@@ -1,5 +1,6 @@
 language: python
-os: ubuntu
+os: linux
+dist: ubuntu
 python:
 - '3.8'
 install:
