@@ -1,0 +1,20 @@
+language: python
+os: linux
+dist: ubuntu
+python:
+- '3.8'
+install:
+- pip install -r requirements.txt
+script:
+- coverage run -m unittest discover -s tests
+after_success:
+- bash <(curl -s https://codecov.io/bash)
+deploy:
+  provider: pypi
+  username: etrintel
+  skip_existing: true
+  distributions: sdist bdist_wheel
+  on:
+    tags: true
+  password:
+    secure: IDdGU6/IwaTZ7dLcRLAfkbWnRhNH7nZ0mnfTgk17JTr7YS69U5WEL/zNAYwwiQPvmpq3VB+POmEilQpUva6CfaV+oJo/IzapFDRmTdhZi6T1UZKHRKNW3Z0/vE9qvxk+4OPVc/k1E4Il/3XO+EeUpTBDIYE509myvZwFdYg0snmyx6MvPKiJGN7/XrTGfnwh70OUV8rUnItoC6g5mnNdgZbBbOdCn3feGgsLvMcU6lfOnbsiIo4LkZ3CgCIG/zjDYBAkA7KsMRjh4ffB552kLWGRFvvSV6+SDFjXM0b15NaW/XH3PH41/gYE7Zz01i36cbaSPNH4L4mim/E+yQe/J+QHvB6GKFRmnqRmZK4YQaF7FjCNJx4+egnrEWKMdiT84fsUdFFG/ZyzQ0FJndwdPOX76JyYcsN1vQeRWEeOm6gDZLVs+vASm+0seMnwcIxaoU7BqunLb46PmDTptSJ51zBG8xjwTN7NyDvt3eGvJRDOUZyD2ogFJC17klq7BiWCSzCNzw+acQfurBAgMi0upRogB9iP9geLu30FBICVkR2Kvl8Y0nXdH0KZHJSensIpbqsTJ6oSYVrSfYkXEtaWV571FNBTd5UO098zC8CZ2c9jRwX1fbV+oplWa8xJC7NP9N/X6aI8eM5E2HdQv3Jz1ysTUqghKkJtm36pP69jyJY=
