@@ -9,13 +9,14 @@ class aptiviti_data_ingestor:
             raise Exception('No write key defined')
         self.write_key = write_key
         
+        analytics.write_key = write_key
         analytics.on_error = self.error_handler
 
         if parameters != None and 'debug' in parameters:
             analytics.debug = parameters.debug
 
     def set_write_key(self, write_key=None):
-        write_key = write_key
+        self.write_key = write_key
 
     def identify(self, user_id=None, traits=None, context=None, timestamp=None, anonymous_id=None, integrations=None):
         analytics.identify(user_id, traits, context, timestamp, anonymous_id, integrations)
